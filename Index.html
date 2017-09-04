@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Machine Learning</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./css/jquery.min.js">
+    </script>
+    <script>
+	$(document).ready(function(){
+        $("button").click(function(){
+            $.post("/cgi-bin/Modeling.py",{
+                firstVisit: $("#firstVisit").val(),
+                haveAppointment: $("#haveAppointment").val(),
+                salesConsultant: $("#salesConsultant").val(),
+                cityTier: $("#cityTier").val(),
+                arrivalTime: $("#arrivalTime").val(),
+                stayDuration: $("#stayDuration").val(),
+                testDrive: $("#testDrive").val(),
+                category: $("#category").val(),
+                subRegion: $("#subRegion").val(),
+                brand: $("#brand").val()
+            },
+            function(data,status){
+                $("#msg").html(data);
+            });
+        });
+    });
+
+
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="">
+        <h1>Mercedes Estimation</h1>
+    </div>
+    <table class="table table-striped" width="600" align="center">
+        <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>First Visit?</td>
+            <td>
+                <select id="firstVisit" name="firstVisit" class="form-control">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Have Appointment?</td>
+            <td>
+                <select id="haveAppointment" name="haveAppointment" class="form-control">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Sales Consultant Name</td>
+            <td><input id="salesConsultant" class="form-control"></td>
+        </tr>
+        <tr>
+            <td>Arrival Time</td>
+            <td>
+                <select id="arrivalTime" name="arrivalTime" class="form-control">
+                    <option value="1">10:00-12:00</option>
+                    <option value="1">13:00-18:00</option>
+                    <option value="1">18:00-22:00</option>
+                    <option value="0">Others</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Stay Duration (hrs)</td>
+            <td>
+                <select id="stayDuration" name="stayDuration" class="form-control">
+                    <option value="0">0 - 60 mins</option>
+                    <option value="1">60 - 80 mins</option>
+                    <option value="2">80 - 100 mins</option>
+                    <option value="3">100 - 120 mins</option>
+                    <option value="4">Others</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Have Test Drive?</td>
+            <td>
+                <select id="testDrive" name="testDrive" class="form-control">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Customer Category</td>
+            <td>
+                <select id="category" name="category" class="form-control">
+                    <option value="0">Active Customer</option>
+                    <option value="1">Former Customer</option>
+                    <option value="2">Phone Inquiry</option>
+                    <option value="3">Group Customers</option>
+                    <option value="4">Inactive Customer</option>
+                    <option value="5">Individual Customer</option>
+                    <option value="6">By Internet</option>
+                    <option value="7">By Recommendation</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Current Brand</td>
+            <td>
+                <select id="brand" name="brand" class="form-control">
+                    <option value="0">No</option>
+                    <option value="1">BBA</option>
+                    <option value="1">Premium</option>
+                    <option value="1">Entry</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>City Tier</td>
+            <td>
+                <select id="cityTier" name="cityTier" class="form-control">
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Sub Region</td>
+            <td>
+                <select id="subRegion" name="subRegion" class="form-control">
+                    <option value="0">East 1</option>
+                    <option value="1">East 2</option>
+                    <option value="2">North 1</option>
+                    <option value="3">North 2</option>
+                    <option value="4">North 3</option>
+                    <option value="5">South 1</option>
+                    <option value="6">South 2</option>
+                    <option value="7">West</option>
+                </select>
+            </td>
+        </tr>
+        <!--<tr>
+            <td>Ask For Quotation?</td>
+            <td>
+                <select id="quotation" name="quotation" class="form-control">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </td>
+        </tr>-->
+        <!-- <tr>
+             <td>Customer Gender</td>
+             <td>
+                 <select id="gender" name="gender" class="form-control">
+                     <option value="Male">Male</option>
+                     <option value="Female">Female</option>
+                 </select>
+             </td>
+         </tr>
+         <tr>
+             <td>Age</td>
+             <td><input id="age" type="number" min="10" max="100" class="form-control"></td>
+         </tr>
+         <tr>
+             <td>Current brand</td>
+             <td>
+                 <select id="car" name="cars" class="form-control">
+                     <option value="volvo">Volvo</option>
+                     <option value="saab">Saab</option>
+                     <option value="fiat">Fiat</option>
+                     <option value="audi">Audi</option>
+                 </select>
+             </td>
+         </tr>-->
+        <tr>
+            <td>
+                <div id="msg" class="">Possibility: 0%</div>
+            </td>
+            <td>
+                <button class="btn btn-lg btn-warning btn-block">Estimate</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div><!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>-->
+</body>
+</html>
