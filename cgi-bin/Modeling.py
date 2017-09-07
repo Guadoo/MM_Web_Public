@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import cgi
 from sklearn.externals import joblib
 import numpy as np
@@ -42,14 +44,7 @@ data_arr0[int(subRegion)+15] = 1
 brand = form.getvalue("brand")
 data_arr0[23] = int(brand)
 
-data_arr = data_arr0
-
-# if gender == "male":
-#     data_arr = data_arr1
-# elif age > 30:
-#     data_arr = data_arr2
-# elif car == "Saab":
-#     data_arr2 = data_arr3
+data_arr = [data_arr0]
 
 
 # load the prediction model
@@ -78,7 +73,7 @@ else:
 
 print("Content-type: text/html\n")
 
-print(str(y_pred_joblib) + " " + str(y_predprob_joblib_indicator) + " " + statement + " to buy: " + str(percentage) + "%")
+#print(str(y_pred_joblib) + " " + str(y_predprob_joblib_indicator) + " " + statement + " to buy: " + str(percentage) + "%")
 #print(y_predprob_joblib_figure + "Figure" + statement + " to buy: " + str(percentage) + "%")
 
-# print("<br>\"" + str(data_arr0) + "\"")
+print(str(percentage) + "%" + "  probability to make a deal!")
